@@ -1,12 +1,12 @@
 package mate.academy.internetshop.model;
 
-public class Item {
+public class Product {
     private Long id;
     private String name;
     private Double price;
     private int count;
 
-    public Item(String name, Double price, int count) {
+    public Product(String name, Double price, int count) {
         this.name = name;
         this.price = price;
         this.count = count;
@@ -38,7 +38,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" + "id=" + id
+        return "Product{" + "id=" + id
                 + ", name='" + name + '\''
                 + ", price=" + price
                 + ", count=" + count + '}';

@@ -3,19 +3,31 @@ package mate.academy.internetshop.db;
 import java.util.ArrayList;
 import java.util.List;
 import mate.academy.internetshop.model.Bucket;
-import mate.academy.internetshop.model.Item;
+import mate.academy.internetshop.model.Order;
+import mate.academy.internetshop.model.Product;
+import mate.academy.internetshop.model.ShoppingCart;
+import mate.academy.internetshop.model.User;
 
 public class Storage {
     private static long itemId = 0;
     private static long bucketId = 0;
-    private static final List<Item> items = new ArrayList<>();
+    private static long userId = 0;
+    private static long orderId = 0;
+    private static long shoppingCartId = 0;
+    private static final List<Product> products = new ArrayList<>();
     private static final List<Bucket> buckets = new ArrayList<>();
+    private static final List<User> users = new ArrayList<>();
+    private static final List<Order> orders = new ArrayList<>();
+    private static final List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
-    public static Item addItemToList(Item item) {
-        item.setId(itemId);
-        items.add(item);
+    public static Product addItemToList(Product product) {
+        if (product == null) {
+            return null;
+        }
+        product.setId(itemId);
+        products.add(product);
         itemId++;
-        return item;
+        return product;
     }
 
     public static Bucket addBucketToList(Bucket bucket) {
@@ -24,8 +36,8 @@ public class Storage {
         return bucket;
     }
 
-    public static List<Item> getItems() {
-        return items;
+    public static List<Product> getProducts() {
+        return products;
     }
 
     public static List<Bucket> getBuckets() {

@@ -1,0 +1,52 @@
+package mate.academy.internetshop.dao.iml;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
+import mate.academy.internetshop.dao.Dao;
+import mate.academy.internetshop.dao.ProductDao;
+import mate.academy.internetshop.db.Storage;
+import mate.academy.internetshop.model.Product;
+
+@Dao
+public class ProductDaoImpl implements ProductDao {
+
+    @Override
+    public Product create(Product product) {
+        return Storage.addItemToList(product);
+    }
+
+    @Override
+    public Optional<Product> get(Long id) {
+        return Storage.getProducts()
+                .stream()
+                .filter(item -> item.getId().equals(id))
+                .findFirst();
+    }
+
+    @Override
+    public Product update(Product product) {
+        if (product == null) {
+            return null;
+        }
+        IntStream.range(0, Storage.getProducts().size())
+                .filter(i -> Storage.getProducts().get(i).getId().equals(product.getId()))
+                .forEach(i -> Storage.getProducts().set(i, product));
+        return product;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return Storage.getProducts().removeIf(item -> item.getId().equals(id));
+    }
+
+    @Override
+    public boolean delete(Product product) {
+        return Storage.getProducts().remove(product);
+    }
+
+    @Override
+    public List<Product> getAll() {
+        return Storage.getProducts();
+    }
+}
