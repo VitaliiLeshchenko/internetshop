@@ -13,7 +13,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product create(Product product) {
-        return Storage.addItemToList(product);
+        return Storage.addToList(product);
     }
 
     @Override
