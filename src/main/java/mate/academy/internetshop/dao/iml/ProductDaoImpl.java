@@ -26,9 +26,6 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product update(Product product) {
-        if (product == null) {
-            return null;
-        }
         IntStream.range(0, Storage.getProducts().size())
                 .filter(i -> Storage.getProducts().get(i).getId().equals(product.getId()))
                 .forEach(i -> Storage.getProducts().set(i, product));

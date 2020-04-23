@@ -4,12 +4,10 @@ public class Product {
     private Long id;
     private String name;
     private Double price;
-    private int count;
 
-    public Product(String name, Double price, int count) {
+    public Product(String name, Double price) {
         this.name = name;
         this.price = price;
-        this.count = count;
     }
 
     public Long getId() {
@@ -40,7 +38,6 @@ public class Product {
     public String toString() {
         return "Product{" + "id=" + id
                 + ", name='" + name + '\''
-                + ", price=" + price
-                + ", count=" + count + '}';
+                + ", price=" + price + '}';
     }
 }

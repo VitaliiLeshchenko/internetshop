@@ -8,8 +8,8 @@ public class Application {
     static Injector injector = Injector.getInstance("mate.academy.internetshop");
 
     public static void main(String[] args) {
-        Product product = new Product("n1", 23.0, 100);
-        Product product2 = new Product("n2", 2.35, 10);
+        Product product = new Product("n1", 23.0);
+        Product product2 = new Product("n2", 2.35);
         ProductService productService = (ProductService)injector.getInstance(ProductService.class);
         //create(item)
         product = productService.create(product);
@@ -32,6 +32,5 @@ public class Application {
         System.out.println(productService.update(product));
         System.out.println(productService.getAll());
         System.out.println(productService.update(null));
-        System.out.println(productService.create(null));
     }
 }
