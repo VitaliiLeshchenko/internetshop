@@ -44,4 +44,16 @@ public class Storage {
     public static List<Product> getProducts() {
         return products;
     }
+
+    public static List<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
+    }
+
+    public static List<User> getUsers() {
+        return users;
+    }
+
+    public static List<Order> getOrders() {
+        return orders;
+    }
 }

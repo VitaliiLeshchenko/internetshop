@@ -6,7 +6,7 @@ public class User {
     private String login;
     private Long id;
 
-    public User(String name, String password, String login) {
+    public User(String name, String login, String password) {
         this.name = name;
         this.password = password;
         this.login = login;
@@ -42,5 +42,11 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{name = '" + name + '\''
+                + ", id = " + id + '}' + "\n";
     }
 }
