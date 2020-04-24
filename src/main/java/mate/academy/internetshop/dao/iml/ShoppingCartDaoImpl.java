@@ -38,11 +38,6 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     }
 
     @Override
-    public boolean delete(ShoppingCart shoppingCart) {
-        return Storage.getShoppingCarts().remove(shoppingCart);
-    }
-
-    @Override
     public List<ShoppingCart> getAll() {
         return Storage.getShoppingCarts();
     }

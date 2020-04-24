@@ -38,11 +38,6 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public boolean delete(Product product) {
-        return Storage.getProducts().remove(product);
-    }
-
-    @Override
     public List<Product> getAll() {
         return Storage.getProducts();
     }
