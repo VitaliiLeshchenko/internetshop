@@ -11,7 +11,7 @@ import mate.academy.internetshop.service.ShoppingCartService;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
-    ShoppingCartDao cartDao;
+    private ShoppingCartDao cartDao;
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
@@ -23,9 +23,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
         ShoppingCart newCart = cartDao.get(shoppingCart.getId()).get();
-        newCart.getProducts().remove(product);
+        var resultRemove = newCart.getProducts().remove(product);
         cartDao.update(newCart);
-        return true;
+        return resultRemove;
     }
 
     @Override

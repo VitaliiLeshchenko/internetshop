@@ -5,7 +5,7 @@ import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.ProductService;
 
 public class TestProduct {
-    static Injector injector = Injector.getInstance("mate.academy.internetshop");
+    private static final Injector injector = Injector.getInstance("mate.academy.internetshop");
 
     public static void test() {
         Product product = new Product("n1", 23.0);

@@ -9,7 +9,7 @@ import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.ShoppingCartService;
 
 public class TestShoppingCart {
-    static Injector injector = Injector.getInstance("mate.academy.internetshop");
+    private static final Injector injector = Injector.getInstance("mate.academy.internetshop");
 
     public static void test() {
         User user1 = new User("user1", "login", "pass");
