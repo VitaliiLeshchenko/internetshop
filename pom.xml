@@ -7,9 +7,10 @@
     <groupId>mate.academy</groupId>
     <artifactId>internet-shop</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <packaging>war</packaging>
     <properties>
-        <jdk.version>13.0.2</jdk.version>
+        <jdk.version>11</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
@@ -25,16 +26,14 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
+
     <build>
-        <finalName>mvn-webapp-test</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -59,9 +58,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.3</version>
                 <configuration>
-                    <webXml>webapp/WEB-INF/web.xml</webXml>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
                 </configuration>
             </plugin>
         </plugins>
@@ -76,10 +74,8 @@
                         <target>${jdk.version}</target>
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
-
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
-
 </project>
