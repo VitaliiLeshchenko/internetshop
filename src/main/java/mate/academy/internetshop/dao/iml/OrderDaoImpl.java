@@ -38,11 +38,6 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public boolean delete(Order order) {
-        return Storage.getOrders().remove(order);
-    }
-
-    @Override
     public List<Order> getAll() {
         return Storage.getOrders();
     }
