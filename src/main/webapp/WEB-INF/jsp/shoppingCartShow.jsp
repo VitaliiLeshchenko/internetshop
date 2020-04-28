@@ -13,6 +13,7 @@
 <table>
     <th>Name</th>
     <th>Price</th>
+    <th>Delete</th>
     <tr>
         <c:forEach var="shoppingCartList" items ="${shoppingCartList}">
     <tr>
@@ -22,13 +23,16 @@
         <td>
             <c:out value ="${shoppingCartList.price}"/>
         </td>
+        <td>
+            <a href="${pageContext.request.contextPath}/productDeleteFromBucket?productId=${shoppingCartList.id}">DELETE</a>
+        </td>
     </tr>
     </c:forEach>
     </tr>
 </table>
 <h4>total price : ${price}</h4>
 <br>
-<a href="/shoppingCartShow">Complete order</a>
+<a href="${pageContext.request.contextPath}/shoppingCartShow">Complete order</a>
 <br>
 </body>
 </html>

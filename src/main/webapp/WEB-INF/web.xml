@@ -83,4 +83,15 @@
         <servlet-name>shoppingCartShow</servlet-name>
         <url-pattern>/shoppingCartShow</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productDeleteFromBucket</servlet-name>
+        <servlet-class>
+            mate.academy.internetshop.controllers.ProductDeleteFromBucketController
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productDeleteFromBucket</servlet-name>
+        <url-pattern>/productDeleteFromBucket</url-pattern>
+    </servlet-mapping>
 </web-app>
