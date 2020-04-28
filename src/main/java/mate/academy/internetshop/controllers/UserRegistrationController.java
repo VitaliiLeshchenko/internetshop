@@ -9,7 +9,7 @@ import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.UserService;
 
-public class RegistrationController extends HttpServlet {
+public class UserRegistrationController extends HttpServlet {
     private static final Injector INJECTOR
             = Injector.getInstance("mate.academy.internetshop");
     private static final UserService USER_SERVICE

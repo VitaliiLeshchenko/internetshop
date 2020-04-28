@@ -10,7 +10,7 @@ import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.UserService;
 
-public class UserController extends HttpServlet {
+public class UserListController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
     private static final UserService USER_SERVICE
             = (UserService) INJECTOR.getInstance(UserService.class);
@@ -21,6 +21,6 @@ public class UserController extends HttpServlet {
 
         List<User> userList = USER_SERVICE.getAll();
         req.setAttribute("users", userList);
-        req.getRequestDispatcher("/WEB-INF/jsp/users/all/allUsers.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/allUsers.jsp").forward(req, resp);
     }
 }
