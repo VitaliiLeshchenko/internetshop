@@ -9,14 +9,14 @@ import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.service.UserService;
 
 public class DeleteUserController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy.internetshop");
-    private static final UserService userService
-            = (UserService) injector.getInstance(UserService.class);
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
+    private static final UserService USER_SERVICE
+            = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        userService.delete(Long.parseLong(req.getParameter("userId")));
+        USER_SERVICE.delete(Long.parseLong(req.getParameter("userId")));
         resp.sendRedirect(req.getContextPath() + "/allUsers");
     }
 }

@@ -67,12 +67,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>addProductToBucket</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.AddProductToBucketController</servlet-class>
+        <servlet-name>ProductAddToBucket</servlet-name>
+        <servlet-class>mate.academy.internetshop.controllers.ProductAddToBucketController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>addProductToBucket</servlet-name>
-        <url-pattern>/addProductToBucket</url-pattern>
+        <servlet-name>ProductAddToBucket</servlet-name>
+        <url-pattern>/ProductAddToBucket</url-pattern>
     </servlet-mapping>
 
     <servlet>

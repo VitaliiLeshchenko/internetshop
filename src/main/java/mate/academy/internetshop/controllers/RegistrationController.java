@@ -10,10 +10,10 @@ import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.UserService;
 
 public class RegistrationController extends HttpServlet {
-    private static final Injector injector
+    private static final Injector INJECTOR
             = Injector.getInstance("mate.academy.internetshop");
-    private static final UserService userService
-            = (UserService) injector.getInstance(UserService.class);
+    private static final UserService USER_SERVICE
+            = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -28,7 +28,7 @@ public class RegistrationController extends HttpServlet {
         String password = req.getParameter("pwd");
         String passwordRepeat = req.getParameter("pwd-repeat");
         if (password.equals(passwordRepeat)) {
-            userService.create(new User("USER", login, password));
+            USER_SERVICE.create(new User("USER", login, password));
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
             req.setAttribute("massage", "Your password and repeated password aren`t the same!");

@@ -10,9 +10,9 @@ import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.ProductService;
 
 public class ProductController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy.internetshop");
-    private static final ProductService productService
-            = (ProductService) injector.getInstance(ProductService.class);
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
+    private static final ProductService PRODUCT_SERVICE
+            = (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -29,10 +29,10 @@ public class ProductController extends HttpServlet {
         if (name.equals("") || price.equals("") || !price.matches("[0-9]+[.]?[0-9]{0,2}")) {
             req.setAttribute("massage", "You write wrong data: " + price);
         } else {
-            productService.create(new Product(name, Double.parseDouble(price)));
+            PRODUCT_SERVICE.create(new Product(name, Double.parseDouble(price)));
             req.setAttribute("massage", "Product added : name = " + name + " prise = " + price);
         }
-        req.setAttribute("products", productService.getAll());
+        req.setAttribute("products", PRODUCT_SERVICE.getAll());
         req.getRequestDispatcher("/WEB-INF/jsp/productCreate.jsp").forward(req,resp);
     }
 }

@@ -28,7 +28,7 @@
 </table>
 <h4>total price : ${price}</h4>
 <br>
-<a href="shoppingCartShow.jsp">Complete order</a>
+<a href="/shoppingCartShow">Complete order</a>
 <br>
 </body>
 </html>

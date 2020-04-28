@@ -9,19 +9,19 @@ import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.service.ProductService;
 import mate.academy.internetshop.service.ShoppingCartService;
 
-public class AddProductToBucketController extends HttpServlet {
+public class ProductAddToBucketController extends HttpServlet {
     private static final Long USER_ID = 1L;
-    private static final Injector injector = Injector.getInstance("mate.academy.internetshop");
-    private static final ShoppingCartService shoppingCart
-            = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
-    private static final ProductService productService
-            = (ProductService) injector.getInstance(ProductService.class);
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
+    private static final ShoppingCartService SHOPPING_CART_SERVICE
+            = (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
+    private static final ProductService PRODUCT_SERVICE
+            = (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        shoppingCart.addProduct(shoppingCart.getByUserId(USER_ID),
-                productService.get(Long.parseLong(req.getParameter("productId"))));
+        SHOPPING_CART_SERVICE.addProduct(SHOPPING_CART_SERVICE.getByUserId(USER_ID),
+                PRODUCT_SERVICE.get(Long.parseLong(req.getParameter("productId"))));
         resp.sendRedirect(req.getContextPath() + "/productList");
     }
 }

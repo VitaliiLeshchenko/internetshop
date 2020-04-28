@@ -11,13 +11,14 @@ import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.service.ProductService;
 
 public class ProductListController extends HttpServlet {
-    Injector injector = Injector.getInstance("mate.academy.internetshop");
-    ProductService productService = (ProductService) injector.getInstance(ProductService.class);
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
+    private static final ProductService PRODUCT_SERVICE
+            = (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Product> productList = productService.getAll();
+        List<Product> productList = PRODUCT_SERVICE.getAll();
         req.setAttribute("products", productList);
         req.getRequestDispatcher("/WEB-INF/jsp/productList.jsp").forward(req, resp);
     }
