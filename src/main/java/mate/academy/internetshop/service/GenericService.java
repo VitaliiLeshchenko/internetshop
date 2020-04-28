@@ -12,5 +12,4 @@ public interface GenericService<T, K> {
     T update(T element);
 
     boolean delete(K id);
-
 }

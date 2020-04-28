@@ -1,0 +1,30 @@
+h1 {
+    text-align: center;
+}
+h3 {
+    text-align: right;
+}
+h4 {
+    color: red;
+}
+a {
+    text-align: center;
+    display: block;
+    border: 1px solid #0003fd;
+    height: 25px;
+}
+table {
+    margin-left:auto;
+    margin-right:auto;
+    text-align-all: center;
+    border-style: ridge;
+    border-width: 2px;
+    border-color: #0049ff;
+    background-color: #ffffff;
+}
+th {
+    border: 2px solid #020202;
+}
+td {
+    border: 2px solid #000000;
+}

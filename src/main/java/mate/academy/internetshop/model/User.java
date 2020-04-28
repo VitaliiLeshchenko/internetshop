@@ -2,8 +2,8 @@ package mate.academy.internetshop.model;
 
 public class User {
     private String name;
-    private String password;
     private String login;
+    private String password;
     private Long id;
 
     public User(String name, String login, String password) {
@@ -46,7 +46,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{name = '" + name + '\''
-                + ", id = " + id + '}' + "\n";
+        return "User{login = '" + login + '\''
+                + ", id = " + id + '}';
     }
 }
