@@ -12,7 +12,7 @@ import mate.academy.internetshop.service.UserService;
 public class UserRegistrationController extends HttpServlet {
     private static final Injector INJECTOR
             = Injector.getInstance("mate.academy.internetshop");
-    private static final UserService USER_SERVICE
+    private UserService userService
             = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
@@ -24,14 +24,16 @@ public class UserRegistrationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        String name = req.getParameter("name");
         String login = req.getParameter("login");
         String password = req.getParameter("pwd");
         String passwordRepeat = req.getParameter("pwd-repeat");
         if (password.equals(passwordRepeat)) {
-            USER_SERVICE.create(new User("USER", login, password));
+            userService.create(new User(name, login, password));
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
-            req.setAttribute("massage", "Your password and repeated password aren`t the same!");
+            req.setAttribute("message", "Your password "
+                    + "and repeated password aren`t the same!");
             req.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req,resp);
         }
     }

@@ -12,16 +12,16 @@ import mate.academy.internetshop.service.ShoppingCartService;
 public class ProductAddToBucketController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
-    private static final ShoppingCartService SHOPPING_CART_SERVICE
+    private ShoppingCartService shoppingCartService
             = (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
-    private static final ProductService PRODUCT_SERVICE
+    private ProductService productService
             = (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        SHOPPING_CART_SERVICE.addProduct(SHOPPING_CART_SERVICE.getByUserId(USER_ID),
-                PRODUCT_SERVICE.get(Long.parseLong(req.getParameter("productId"))));
+        shoppingCartService.addProduct(shoppingCartService.getByUserId(USER_ID),
+                productService.get(Long.parseLong(req.getParameter("productId"))));
         resp.sendRedirect(req.getContextPath() + "/productList");
     }
 }

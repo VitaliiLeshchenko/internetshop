@@ -73,10 +73,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public double getTotalPrice(Long id) {
-        return cartDao.get(id).get()
-                .getProducts()
-                .stream()
+    public double getTotalPrice(ShoppingCart shoppingCart) {
+        return shoppingCart.getProducts().stream()
                 .map(Product::getPrice)
                 .reduce(0.0, Double::sum);
     }

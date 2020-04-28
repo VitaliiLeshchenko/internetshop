@@ -9,11 +9,16 @@
 <a href="${pageContext.request.contextPath}/" style="text-align: left">Main page</a>
 <br>
     <h1>registration</h1>
-    <h4>${massage}</h4>
+    <h4>${message}</h4>
 <form method="post" action="${pageContext.request.contextPath}/registration">
-    <br>please provide your login:<input type="text" name="login">
-    <br>please provide your password:<input type="password" name="pwd">
-    <br>please repeat your password:<input type="password" name="pwd-repeat">
+    <br>please write your login:     <input type="text" name="login">
+    <br>
+    <br>please write your name:      <input type="text" name="name">
+    <br>
+    <br>please write your password:  <input type="password" name="pwd">
+    <br>
+    <br>please repeat your password: <input type="password" name="pwd-repeat">
+    <br>
     <button type="submit">Register</button>
 </form>
 </body>

@@ -11,7 +11,7 @@
 <a href="${pageContext.request.contextPath}/" style="text-align: left">Main page</a>
 <br>
 <h1>Create new product</h1>
-<h4>${massage}</h4>
+<h4>${message}</h4>
     <form method="post" action="${pageContext.request.contextPath}/productCreate">
     <br>please write name  :<input type="text" name="name">
     <br>
