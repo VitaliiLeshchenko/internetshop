@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <h1>Products at bucket</h1>
-<table>
+<table class="table">
     <th>Name</th>
     <th>Price</th>
     <th>Delete</th>

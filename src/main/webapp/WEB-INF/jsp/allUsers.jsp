@@ -10,26 +10,61 @@
 </head>
 <body>
     <jsp:include page="header.jsp"/>
-    <h1>All Users</h1>
-    <table>
-            <th>Login</th>
-            <th>Id</th>
-            <th>Delete</th>
-        <tr>
-            <c:forEach var="users" items ="${users}">
-        <tr>
-            <td>
-            <c:out value ="${users.login}"/>
-            </td>
-            <td>
-            <c:out value ="${users.id}"/>
-            </td>
-        <td>
-            <a href="${pageContext.request.contextPath}/deleteUser?userId=${users.id}">DELETE</a>
-        </td>
-        </tr>
-        </c:forEach>
-        </tr>
-    </table>
+
+
+
+
+
+
+
+    <div class="card">
+        <div class="card-body">
+    <div class="card">
+        <div class="card-header">
+            All users
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <c:forEach var="users" items ="${users}" varStatus="loopCounter">
+                <tr>
+                    <td>
+                        <c:out value ="${loopCounter.index}"/>
+                    </td>
+                    <td>
+                        <c:out value ="${users.login}"/>
+                    </td>
+                    <td>
+                        <c:out value ="${users.id}"/>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/deleteUser?userId=${users.id}">DELETE</a>
+                    </td>
+                </tr>
+                </c:forEach>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
 </body>
 </html>

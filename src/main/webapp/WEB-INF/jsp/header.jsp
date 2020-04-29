@@ -9,7 +9,7 @@
 <body>
 <div class="card">
     <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
+        <ul class="nav nav-pills card-header-pills">
             <li class="nav-item col-2">
                 <a class="nav-link active" href="${pageContext.request.contextPath}/">Main page</a>
             </li>

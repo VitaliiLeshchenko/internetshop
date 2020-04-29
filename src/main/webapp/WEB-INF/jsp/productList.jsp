@@ -11,27 +11,46 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<h1>All products</h1>
-<table>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Add to bucket</th>
-    <tr>
-        <c:forEach var="products" items ="${products}">
-    <tr>
-        <td>
-            <c:out value ="${products.name}"/>
-        </td>
-        <td>
-            <c:out value ="${products.price}"/>
-        </td>
-        <td>
-            <a href="${pageContext.request.contextPath}/ProductAddToBucket?productId=${products.id}">add to bucket</a>
-        </td>
-    </tr>
-    </c:forEach>
-    </tr>
-</table>
+
+
+
+
+
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="card">
+            <div class="card-header">
+                All products
+            </div>
+            <table class="table">
+                <th>#</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Add to bucket</th>
+                <tr>
+                    <c:forEach var="products" items ="${products}" varStatus="count">
+                <tr>
+                    <td>
+                        <c:out value ="${count.index}"/>
+                    </td>
+                    <td>
+                        <c:out value ="${products.name}"/>
+                    </td>
+                    <td>
+                        <c:out value ="${products.price}"/>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/ProductAddToBucket?productId=${products.id}">add to bucket</a>
+                    </td>
+                </tr>
+                </c:forEach>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
