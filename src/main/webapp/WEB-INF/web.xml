@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>productCreate</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.ProductRegistrationController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.AddProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productCreate</servlet-name>

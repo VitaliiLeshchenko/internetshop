@@ -13,11 +13,6 @@
 <jsp:include page="header.jsp"/>
 
 
-
-
-
-
-
 <div class="card">
     <div class="card-body">
         <div class="card">
