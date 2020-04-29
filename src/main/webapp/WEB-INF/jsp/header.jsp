@@ -13,11 +13,20 @@
             <li class="nav-item col-2">
                 <a class="nav-link active" href="${pageContext.request.contextPath}/">Main page</a>
             </li>
-            <li class="nav-item col-8">
-
+            <li class="nav-item col-2">
+                <a class="nav-link" href="${pageContext.request.contextPath}/registration">registration</a>
             </li>
             <li class="nav-item col-2">
-                <a class="nav-link" href="#">User Page</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/productList">Product catalogue</a>
+            </li>
+            <li class="nav-item col-2">
+                <a class="nav-link" href="${pageContext.request.contextPath}/getUserOrders">Your orders</a>
+            </li>
+            <li class="nav-item col-2">
+                <a class="nav-link" href="${pageContext.request.contextPath}/shoppingCartShow">Your card</a>
+            </li>
+            <li class="nav-item col-2">
+                <a class="nav-link" href="#">Your Page</a>
             </li>
         </ul>
     </div>

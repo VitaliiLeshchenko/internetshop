@@ -34,7 +34,7 @@
 </table>
 <h4>total price : ${price}</h4>
 <br>
-<a href="${pageContext.request.contextPath}/shoppingCartShow">Complete order</a>
+<a href="${pageContext.request.contextPath}/completeOrder">Complete order</a>
 <br>
 </body>
 </html>

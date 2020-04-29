@@ -58,4 +58,11 @@ public class OrderServiceImpl implements OrderService {
     public boolean delete(Long id) {
         return orderDao.delete(id);
     }
+
+    @Override
+    public double getPrice(Order order) {
+        return order.getProducts().stream()
+                .map(Product::getPrice)
+                .reduce(0.0, Double::sum);
+    }
 }

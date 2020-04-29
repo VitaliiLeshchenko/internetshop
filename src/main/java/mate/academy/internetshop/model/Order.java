@@ -1,15 +1,18 @@
 package mate.academy.internetshop.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order {
     private Long id;
     private List<Product> products;
     private User user;
+    private LocalDateTime dateTime;
 
     public Order(List<Product> products, User user) {
         this.products = products;
         this.user = user;
+        dateTime = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -34,5 +37,17 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{"
+                + "id=" + id
+                + ", products=" + products
+                + ", user=" + user + '}';
     }
 }

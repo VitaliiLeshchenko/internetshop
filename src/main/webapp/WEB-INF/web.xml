@@ -94,4 +94,59 @@
         <servlet-name>productDeleteFromBucket</servlet-name>
         <url-pattern>/productDeleteFromBucket</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productDelete</servlet-name>
+        <servlet-class>
+            mate.academy.internetshop.controllers.DeleteProductController
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productDelete</servlet-name>
+        <url-pattern>/productDelete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>completeOrder</servlet-name>
+        <servlet-class>
+            mate.academy.internetshop.controllers.CompleteOrderController
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>completeOrder</servlet-name>
+        <url-pattern>/completeOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>
+            mate.academy.internetshop.controllers.DeleteOrderController
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/deleteOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUserOrders</servlet-name>
+        <servlet-class>
+            mate.academy.internetshop.controllers.GetUserOrdersController
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserOrders</servlet-name>
+        <url-pattern>/getUserOrders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUserOrder</servlet-name>
+        <servlet-class>
+            mate.academy.internetshop.controllers.GetUserOrderController
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserOrder</servlet-name>
+        <url-pattern>/getUserOrder</url-pattern>
+    </servlet-mapping>
 </web-app>
