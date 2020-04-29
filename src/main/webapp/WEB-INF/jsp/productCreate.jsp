@@ -1,15 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style><%@include file="/WEB-INF/css/style.css"%></style>
 
 <html>
 <head>
-    <title>Create product</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title>Product create</title>
 </head>
 <body>
-<br>
-<a href="${pageContext.request.contextPath}/" style="text-align: left">Main page</a>
-<br>
+<jsp:include page="header.jsp"/>
 <h1>Create new product</h1>
 <h4>${message}</h4>
     <form method="post" action="${pageContext.request.contextPath}/productCreate">
