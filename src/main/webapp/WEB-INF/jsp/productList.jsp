@@ -12,7 +12,6 @@
 <body>
 <jsp:include page="header.jsp"/>
 
-
 <div class="card">
     <div class="card-body">
         <div class="card">
@@ -28,7 +27,7 @@
                     <c:forEach var="products" items ="${products}" varStatus="count">
                 <tr>
                     <td>
-                        <c:out value ="${count.index}"/>
+                        <c:out value ="${count.index + 1}"/>
                     </td>
                     <td>
                         <c:out value ="${products.name}"/>

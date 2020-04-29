@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>productCreate</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.AddProductController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.product.AddProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productCreate</servlet-name>
@@ -50,7 +50,7 @@
 
     <servlet>
         <servlet-name>productList</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.GetAllProducts</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.product.GetAllProducts</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productList</servlet-name>
@@ -68,7 +68,7 @@
 
     <servlet>
         <servlet-name>ProductAddToBucket</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.AddProductToBucketController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.product.AddProductToBucketController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductAddToBucket</servlet-name>
@@ -77,7 +77,7 @@
 
     <servlet>
         <servlet-name>shoppingCartShow</servlet-name>
-        <servlet-class>mate.academy.internetshop.controllers.ShoppingCartShowController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.GetUserCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>shoppingCartShow</servlet-name>
@@ -87,7 +87,7 @@
     <servlet>
         <servlet-name>productDeleteFromBucket</servlet-name>
         <servlet-class>
-            mate.academy.internetshop.controllers.DeleteProductFromBucketController
+            mate.academy.internetshop.controllers.product.DeleteProductFromBucketController
         </servlet-class>
     </servlet>
     <servlet-mapping>
@@ -98,7 +98,7 @@
     <servlet>
         <servlet-name>productDelete</servlet-name>
         <servlet-class>
-            mate.academy.internetshop.controllers.DeleteProductController
+            mate.academy.internetshop.controllers.product.DeleteProductController
         </servlet-class>
     </servlet>
     <servlet-mapping>
