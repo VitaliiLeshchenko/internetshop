@@ -23,9 +23,12 @@ public class DeleteProductController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String id = req.getParameter("productId");
+        // ***   comment to mentor   ***
+        // this controller I use to show All products for admin
+        // without creating another controller
+        // that`s why i need to check for null...
         if (id != null) {
-            boolean isDeleted = productService.delete(Long.parseLong(id));
-            req.setAttribute("isDeleted", isDeleted);
+            productService.delete(Long.parseLong(id));
         }
         List<Product> productList = productService.getAll();
         req.setAttribute("products", productList);
