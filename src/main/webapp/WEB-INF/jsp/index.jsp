@@ -18,7 +18,7 @@
           <a class="navbar-brand" href="${pageContext.request.contextPath}/allUsers">All users</a>
       </nav>
       <nav class="navbar navbar-light bg-white">
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/productDelete">AdminProduct</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/getProductAdmin">AdminProduct</a>
       </nav>
   </div>
   </body>
