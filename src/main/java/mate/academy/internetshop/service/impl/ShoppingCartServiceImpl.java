@@ -71,4 +71,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public boolean delete(Long id) {
         return cartDao.delete(id);
     }
+
+    @Override
+    public double getTotalPrice(ShoppingCart shoppingCart) {
+        return shoppingCart.getProducts().stream()
+                .map(Product::getPrice)
+                .reduce(0.0, Double::sum);
+    }
 }
