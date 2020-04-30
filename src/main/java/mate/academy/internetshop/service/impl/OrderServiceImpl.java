@@ -6,6 +6,7 @@ import mate.academy.internetshop.dao.OrderDao;
 import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
+import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.OrderService;
 import mate.academy.internetshop.service.Service;
@@ -21,9 +22,9 @@ public class OrderServiceImpl implements OrderService {
     private ShoppingCartService shoppingCartService;
 
     @Override
-    public Order completeOrder(List<Product> products, User user) {
-        shoppingCartService.clear(shoppingCartService.getByUserId(user.getId()));
-        return orderDao.create(new Order(products, user));
+    public Order completeOrder(ShoppingCart shoppingCart) {
+        return orderDao.create(new Order(shoppingCartService.getAllProducts(shoppingCart),
+                shoppingCart.getUser()));
     }
 
     @Override
@@ -57,5 +58,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean delete(Long id) {
         return orderDao.delete(id);
+    }
+
+    @Override
+    public double getPrice(Order order) {
+        return order.getProducts().stream()
+                .map(Product::getPrice)
+                .reduce(0.0, Double::sum);
     }
 }
