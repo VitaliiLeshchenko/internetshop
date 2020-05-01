@@ -9,19 +9,47 @@
     <title>Registration</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-    <h1>registration</h1>
-    <h4>${message}</h4>
-<form method="post" action="${pageContext.request.contextPath}/registration">
-    <br>please write your login:     <input type="text" name="login">
+<div class="card">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+                <a class="nav-link active" href="${pageContext.request.contextPath}/startPage">Main page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/registration">Registration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<br>
+<br>
+
+<div class="container h-100">
     <br>
-    <br>please write your name:      <input type="text" name="name">
+    <h3 class="text-info">${message}</h3>
     <br>
-    <br>please write your password:  <input type="password" name="pwd">
-    <br>
-    <br>please repeat your password: <input type="password" name="pwd-repeat">
-    <br>
-    <button type="submit">Register</button>
-</form>
+    <form action="${pageContext.request.contextPath}/registration" method="post">
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input type="text" class="form-control" id="login" name="login">
+        </div>
+        <div class="form-group">
+            <label for="login">Name</label>
+            <input type="text" class="form-control" id="login" name="name">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="pwd">
+        </div>
+        <div class="form-group">
+            <label for="password">Repeat password</label>
+            <input type="password" class="form-control" id="password" name="pwd-repeat">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
 </body>
 </html>
