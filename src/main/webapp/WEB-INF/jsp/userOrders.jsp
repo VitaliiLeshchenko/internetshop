@@ -37,10 +37,10 @@
                             <c:out value ="${order.id}"/>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/getUserOrder?orderId=${order.id}">INFO</a>
+                            <a href="${pageContext.request.contextPath}/user/order?order_id=${order.id}">INFO</a>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/deleteOrder?orderId=${order.id}">DELETE</a>
+                            <a href="${pageContext.request.contextPath}/order/delete?order_id=${order.id}">DELETE</a>
                         </td>
                     </tr>
                     </c:forEach>

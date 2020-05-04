@@ -11,8 +11,8 @@ import mate.academy.internetshop.service.OrderService;
 import mate.academy.internetshop.service.ShoppingCartService;
 import mate.academy.internetshop.service.UserService;
 
-@WebServlet("/completeOrder")
-public class CompleteOrderController extends HttpServlet {
+@WebServlet("/order/complete")
+public class OrderCompleteController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
@@ -26,6 +26,6 @@ public class CompleteOrderController extends HttpServlet {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
         orderService.completeOrder(shoppingCart).setUser(userService.get(userId));
         shoppingCartService.clear(shoppingCart);
-        resp.sendRedirect(req.getContextPath() + "/getUserOrders");
+        resp.sendRedirect(req.getContextPath() + "/user/orders");
     }
 }

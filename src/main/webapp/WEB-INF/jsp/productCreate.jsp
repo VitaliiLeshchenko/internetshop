@@ -13,7 +13,7 @@
 <jsp:include page="header.jsp"/>
 <h1>Create new product</h1>
 <h4>${message}</h4>
-    <form method="post" action="${pageContext.request.contextPath}/productCreate">
+    <form method="post" action="${pageContext.request.contextPath}/product/create">
     <br>please write name  :<input type="text" name="name">
     <br>
     <br>please write price :<input type="password" name="price">
