@@ -10,7 +10,7 @@ import mate.academy.internetshop.lib.Injector;
 import mate.academy.internetshop.service.ProductService;
 import mate.academy.internetshop.service.ShoppingCartService;
 
-@WebServlet("/product/add/card")
+@WebServlet("/card/product/add")
 public class CardAddProductController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
     private ShoppingCartService shoppingCartService
