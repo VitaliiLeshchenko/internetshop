@@ -46,7 +46,7 @@
         </div>
         total price : ${price}
     </div>
-    <a href="${pageContext.request.contextPath}/deleteOrder?orderId=${id}">delete order</a>
+    <a href="${pageContext.request.contextPath}/order/delete?order_id=${id}">delete order</a>
     <a href="#">confirm order</a>
 </div>
 </body>

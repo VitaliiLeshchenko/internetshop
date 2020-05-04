@@ -11,14 +11,14 @@
   <jsp:include page="header.jsp"/>
   <div class="card">
       <nav class="navbar navbar-light bg-white">
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/injectData">TEST DATA INJECT
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/inject/data">TEST DATA INJECT
               - create test Users and Products</a>
       </nav>
       <nav class="navbar navbar-light bg-white">
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/allUsers">All users</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/users/all">All users</a>
       </nav>
       <nav class="navbar navbar-light bg-white">
-          <a class="navbar-brand" href="${pageContext.request.contextPath}/getProductAdmin">AdminProduct</a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/product/list/admin">AdminProduct</a>
       </nav>
   </div>
   </body>

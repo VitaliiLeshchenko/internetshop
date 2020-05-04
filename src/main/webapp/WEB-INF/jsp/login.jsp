@@ -12,7 +12,7 @@
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item">
-                <a class="nav-link active" href="${pageContext.request.contextPath}/startPage">Main page</a>
+                <a class="nav-link active" href="${pageContext.request.contextPath}/">Main page</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/registration">Registration</a>

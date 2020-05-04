@@ -36,7 +36,7 @@
                         <c:out value ="${products.price}"/>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/ProductAddToBucket?productId=${products.id}">add to bucket</a>
+                        <a href="${pageContext.request.contextPath}/card/product/add?product_id=${products.id}">add to bucket</a>
                     </td>
                 </tr>
                 </c:forEach>

@@ -26,7 +26,7 @@
             <c:out value ="${shoppingCartList.price}"/>
         </td>
         <td>
-            <a href="${pageContext.request.contextPath}/productDeleteFromBucket?productId=${shoppingCartList.id}">DELETE</a>
+            <a href="${pageContext.request.contextPath}/cart/product/delete?product_id=${shoppingCartList.id}">DELETE</a>
         </td>
     </tr>
     </c:forEach>
@@ -34,7 +34,7 @@
 </table>
 <h4>total price : ${price}</h4>
 <br>
-<a href="${pageContext.request.contextPath}/completeOrder">Complete order</a>
+<a href="${pageContext.request.contextPath}/order/complete">Complete order</a>
 <br>
 </body>
 </html>

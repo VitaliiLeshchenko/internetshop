@@ -17,13 +17,13 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/registration">registration</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/productList">Product catalogue</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/product/list">Product catalogue</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/getUserOrders">Your orders</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">Your orders</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/shoppingCartShow">Your card</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/user/card">Your card</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Your Page</a>

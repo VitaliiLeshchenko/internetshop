@@ -41,14 +41,14 @@
                         <c:out value ="${products.id}"/>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/productDelete?productId=${products.id}">Delete product</a>
+                        <a href="${pageContext.request.contextPath}/product/delete?product_id=${products.id}">Delete product</a>
                     </td>
                 </tr>
                 </c:forEach>
                 </tr>
             </table>
             <nav class="navbar navbar-light bg-white">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/productCreate">Create product</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/product/create">Create product</a>
             </nav>
         </div>
     </div>
