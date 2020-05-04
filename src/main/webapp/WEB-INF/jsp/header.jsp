@@ -10,22 +10,22 @@
 <div class="card">
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item col-2">
+            <li class="nav-item">
                 <a class="nav-link active" href="${pageContext.request.contextPath}/">Main page</a>
             </li>
-            <li class="nav-item col-2">
+            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/registration">registration</a>
             </li>
-            <li class="nav-item col-2">
+            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/productList">Product catalogue</a>
             </li>
-            <li class="nav-item col-2">
+            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/getUserOrders">Your orders</a>
             </li>
-            <li class="nav-item col-2">
+            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/shoppingCartShow">Your card</a>
             </li>
-            <li class="nav-item col-2">
+            <li class="nav-item">
                 <a class="nav-link" href="#">Your Page</a>
             </li>
         </ul>
