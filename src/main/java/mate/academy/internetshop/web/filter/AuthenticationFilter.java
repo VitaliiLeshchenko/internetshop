@@ -21,7 +21,6 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
@@ -30,23 +29,19 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
-
         String url = req.getServletPath();
         if (url.equals("/login") || url.equals("/startPage") || url.equals("/registration")) {
             chain.doFilter(req, resp);
             return;
         }
-
         if (userId == null || userService.get(userId) == null) {
             resp.sendRedirect("/startPage");
             return;
         }
-
         chain.doFilter(req, resp);
     }
 
     @Override
     public void destroy() {
-
     }
 }
