@@ -7,7 +7,6 @@
           crossorigin="anonymous">
 </head>
 <body>
-<div class="card">
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item">
@@ -26,10 +25,10 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/user/card">Your card</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Your Page</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
             </li>
+
         </ul>
-    </div>
 </div>
 </body>
 </html>
