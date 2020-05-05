@@ -2,11 +2,11 @@ package mate.academy.internetshop.model;
 
 public class Role {
     private Long id;
-    private Roles role;
+    private RoleName roleName;
 
-    public Role(Long id, Roles role) {
+    public Role(Long id, RoleName roleName) {
         this.id = id;
-        this.role = role;
+        this.roleName = roleName;
     }
 
     public Long getId() {
@@ -17,15 +17,15 @@ public class Role {
         this.id = id;
     }
 
-    public Roles getRole() {
-        return role;
+    public RoleName getRoleName() {
+        return roleName;
     }
 
-    public void setRole(Roles role) {
-        this.role = role;
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
     }
 
-    enum Roles {
+    public enum RoleName {
         USER,
         ADMIN;
     }

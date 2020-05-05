@@ -1,15 +1,20 @@
 package mate.academy.internetshop.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class User {
+    private Long id;
     private String name;
     private String login;
     private String password;
-    private Long id;
+    private Set<Role> roles;
 
     public User(String name, String login, String password) {
         this.name = name;
         this.password = password;
         this.login = login;
+        roles = new HashSet<>();
     }
 
     public String getName() {
@@ -48,5 +53,13 @@ public class User {
     public String toString() {
         return "User{login = '" + login + '\''
                 + ", id = " + id + '}';
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 }

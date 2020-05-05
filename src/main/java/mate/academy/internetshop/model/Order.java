@@ -7,7 +7,7 @@ public class Order {
     private Long id;
     private List<Product> products;
     private User user;
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
     public Order(List<Product> products, User user) {
         this.products = products;
