@@ -6,12 +6,12 @@ import java.util.List;
 public class Order {
     private Long id;
     private List<Product> products;
-    private User user;
+    private Long userId;
     private final LocalDateTime dateTime;
 
-    public Order(List<Product> products, User user) {
+    public Order(List<Product> products, Long userId) {
         this.products = products;
-        this.user = user;
+        this.userId = userId;
         dateTime = LocalDateTime.now();
     }
 
@@ -31,12 +31,12 @@ public class Order {
         this.products = products;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public LocalDateTime getDateTime() {
@@ -48,6 +48,6 @@ public class Order {
         return "Order{"
                 + "id=" + id
                 + ", products=" + products
-                + ", user=" + user + '}';
+                + ", user=" + userId + '}';
     }
 }
