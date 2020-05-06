@@ -1,6 +1,7 @@
 package mate.academy.internetshop.web.filter;
 
 import java.io.IOException;
+import java.util.HashSet;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -17,9 +18,16 @@ import mate.academy.internetshop.service.UserService;
 public class AuthenticationFilter implements Filter {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private HashSet<String> freeAccessUrls = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        freeAccessUrls.add("/");
+        freeAccessUrls.add("/login");
+        freeAccessUrls.add("/startPage");
+        freeAccessUrls.add("/product/list");
+        freeAccessUrls.add("/registration");
+        freeAccessUrls.add("/inject/data");
     }
 
     @Override
@@ -29,12 +37,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         Long userId = (Long) req.getSession().getAttribute("user_id");
         String url = req.getServletPath();
-        if (url.equals("/login")
-                || url.equals("/startPage")
-                || url.equals("/registration")
-                || url.equals("/inject/data")
-                || url.equals("/")
-                || url.equals("/product/list")) {
+        if (freeAccessUrls.contains(url)) {
             chain.doFilter(req, resp);
             return;
         }

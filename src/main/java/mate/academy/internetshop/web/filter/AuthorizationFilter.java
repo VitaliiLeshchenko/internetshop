@@ -31,12 +31,13 @@ public class AuthorizationFilter implements Filter {
         protectedUrls.put("/users/all", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/order/delete", Set.of(Role.RoleName.ADMIN));
 
-        protectedUrls.put("/card/product/add", Set.of(Role.RoleName.USER, Role.RoleName.ADMIN));
-        protectedUrls.put("/cart/product/delete", Set.of(Role.RoleName.USER, Role.RoleName.ADMIN));
-        protectedUrls.put("/order/complete", Set.of(Role.RoleName.USER, Role.RoleName.ADMIN));
-        protectedUrls.put("/user/card", Set.of(Role.RoleName.USER, Role.RoleName.ADMIN));
         protectedUrls.put("/user/order", Set.of(Role.RoleName.USER, Role.RoleName.ADMIN));
         protectedUrls.put("/user/orders", Set.of(Role.RoleName.USER, Role.RoleName.ADMIN));
+
+        protectedUrls.put("/card/product/add", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/cart/product/delete", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/order/complete", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/user/card", Set.of(Role.RoleName.USER));
     }
 
     @Override
