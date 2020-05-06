@@ -30,6 +30,11 @@
     <p class="lead">This is a simple internet shop. Created by Vitalii Leshchenko</p>
     <hr class="my-4">
     <p>At first, You need to authorize.</p>
+    <p>You can also visit following pages:
+        <a class="nav-link" href="${pageContext.request.contextPath}/product/list">Product catalogue</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/inject/data">INJECT</a>
+    </p>
+
 </div>
 </body>
 </html>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.internetshop.lib.Injector;
+import mate.academy.internetshop.model.Role;
 import mate.academy.internetshop.model.User;
 import mate.academy.internetshop.service.UserService;
 
@@ -31,7 +32,8 @@ public class UserRegistrationController extends HttpServlet {
         String password = req.getParameter("pwd");
         String passwordRepeat = req.getParameter("pwd-repeat");
         if (password.equals(passwordRepeat)) {
-            userService.create(new User(name, login, password));
+            User user = userService.create(new User(name, login, password));
+            user.addRole(new Role(1L, Role.RoleName.USER));
             req.setAttribute("message", "Registration complete, now you can Login.");
             req.getRequestDispatcher("/WEB-INF/jsp/startPage.jsp").forward(req,resp);
         } else {
