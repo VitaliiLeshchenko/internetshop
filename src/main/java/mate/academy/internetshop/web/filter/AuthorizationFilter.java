@@ -59,7 +59,7 @@ public class AuthorizationFilter implements Filter {
         if (isAuthorized(userService.get(userId), protectedUrls.get(requestedUrl))) {
             chain.doFilter(req, resp);
         } else {
-            LOGGER.warn("user : " + userId + " tried to join admin page.");
+            LOGGER.warn("user : " + userId + " tried to join secured page.");
             req.getRequestDispatcher("/WEB-INF/jsp/accessDenied.jsp").forward(req,resp);
         }
     }
