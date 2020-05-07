@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         User userNew = userDao.create(user);
-        shoppingCartService.create(new ShoppingCart(userNew));
+        shoppingCartService.create(new ShoppingCart(userNew.getId()));
         return userNew;
     }
 
