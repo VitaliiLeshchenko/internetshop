@@ -8,7 +8,6 @@ import mate.academy.internetshop.dao.ProductDao;
 import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.model.Product;
 
-@Dao
 public class ProductDaoImpl implements ProductDao {
 
     @Override
