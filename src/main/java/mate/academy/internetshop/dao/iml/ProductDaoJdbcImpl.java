@@ -17,99 +17,96 @@ import mate.academy.internetshop.util.ConnectionUtil;
 import org.apache.log4j.Logger;
 
 @Dao
-public class ProductDaoJDPCImpl implements ProductDao {
-    private static final Logger LOGGER = Logger.getLogger(ProductDaoJDPCImpl.class);
+public class ProductDaoJdbcImpl implements ProductDao {
+    private static final Logger LOGGER = Logger.getLogger(ProductDaoJdbcImpl.class);
 
     @Override
     public Product create(Product element) {
         String sql = "insert into products (name, price) VALUES (?, ?);";
-        try (Connection con = ConnectionUtil.getConnection()){
-            PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        try (Connection con = ConnectionUtil.getConnection()) {
+            PreparedStatement statement
+                    = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, BigDecimal.valueOf(element.getPrice()));
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
-            while (resultSet.next()) {
-                element.setId(resultSet.getLong(1));
-            }
+            resultSet.next();
+            element.setId(resultSet.getLong(1));
             return element;
         } catch (SQLException e) {
-            LOGGER.error("Cant create product.");
             throw new DataProcessingException(e.getMessage());
         }
     }
 
     @Override
     public Optional<Product> get(Long id) {
-        Product product = null;
+        Product product;
         String sql = "SELECT * FROM products WHERE id = ?;";
-        try (Connection con = ConnectionUtil.getConnection()){
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setBigDecimal(1, BigDecimal.valueOf(id));
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                        product = new Product(
-                        resultSet.getString("name"),
-                        resultSet.getDouble("price")
-                );
-                product.setId(resultSet.getLong("id"));
+            if (resultSet.next()) {
+                return Optional.of(getProduct(resultSet));
             }
+            return Optional.empty();
         } catch (SQLException e) {
-            LOGGER.error("Cant fing product.");
             throw new DataProcessingException(e.getMessage());
         }
-        return Optional.ofNullable(product);
     }
 
     @Override
     public Product update(Product element) {
         String sql = "UPDATE products SET name = ? , price = ? WHERE id = ?;";
-        try (Connection con = ConnectionUtil.getConnection()){
-            PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        try (Connection con = ConnectionUtil.getConnection()) {
+            PreparedStatement statement
+                    = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getName());
             statement.setBigDecimal(2, BigDecimal.valueOf(element.getPrice()));
             statement.setBigDecimal(3, BigDecimal.valueOf(element.getId()));
-            statement.executeUpdate();
-            return element;
+            if (statement.executeUpdate() > 0) {
+                return get(element.getId()).get();
+            }
+            String msg = "Can't find product with id :" + element.getId();
+            LOGGER.error(msg);
+            throw new DataProcessingException(msg);
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
+            throw new DataProcessingException(e.getMessage());
         }
-        return element;
     }
 
     @Override
     public boolean delete(Long id) {
         String sql = "DELETE FROM products WHERE id = ?;";
-        int row = 0;
-        try (Connection con = ConnectionUtil.getConnection()){
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, id + "");
-            row = statement.executeUpdate();
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
+            throw new DataProcessingException(e.getMessage());
         }
-        return row > 0;
     }
 
     @Override
     public List<Product> getAll() {
         String sql = "SELECT * FROM products";
         List<Product> productList = new ArrayList<>();
-        try (Connection con = ConnectionUtil.getConnection()){
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement statement = con.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Product product = new Product(
-                        resultSet.getString("name"),
-                        resultSet.getDouble("price")
-                );
-                product.setId(resultSet.getLong("id"));
-                productList.add(product);
+                productList.add(getProduct(resultSet));
             }
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            //todo add my exceptions everywhere
+            throw new DataProcessingException(e.getMessage());
         }
         return productList;
+    }
+
+    private Product getProduct(ResultSet resultSet) throws SQLException {
+        Product product = new Product(resultSet.getString("name"),
+                resultSet.getDouble("price"));
+        product.setId(resultSet.getLong("id"));
+        return product;
     }
 }
