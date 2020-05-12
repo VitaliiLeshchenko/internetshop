@@ -14,11 +14,9 @@ import mate.academy.internetshop.dao.ProductDao;
 import mate.academy.internetshop.exception.DataProcessingException;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.util.ConnectionUtil;
-import org.apache.log4j.Logger;
 
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
-    private static final Logger LOGGER = Logger.getLogger(ProductDaoJdbcImpl.class);
 
     @Override
     public Product create(Product element) {
@@ -68,7 +66,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return get(element.getId()).get();
             }
             String msg = "Can't find product with id :" + element.getId();
-            LOGGER.error(msg);
             throw new DataProcessingException(msg);
         } catch (SQLException e) {
             throw new DataProcessingException(e.getMessage());
