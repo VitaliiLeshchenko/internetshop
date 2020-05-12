@@ -3,12 +3,10 @@ package mate.academy.internetshop.dao.iml;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
-import mate.academy.internetshop.dao.Dao;
 import mate.academy.internetshop.dao.ShoppingCartDao;
 import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.model.ShoppingCart;
 
-@Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override

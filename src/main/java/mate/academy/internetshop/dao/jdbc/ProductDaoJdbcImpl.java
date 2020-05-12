@@ -1,4 +1,4 @@
-package mate.academy.internetshop.dao.iml;
+package mate.academy.internetshop.dao.jdbc;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
