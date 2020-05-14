@@ -21,7 +21,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> findByLogin(String login) {
-        try (Connection con = ConnectionUtil.getConnection();) {
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE login = ?");
             ps.setString(1, login);
             ResultSet rs = ps.executeQuery();
@@ -38,7 +38,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User create(User element) {
-        try (Connection con = ConnectionUtil.getConnection();) {
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO users (login, password, name) VALUES(?, ?, ?);",
                     Statement.RETURN_GENERATED_KEYS);
@@ -58,7 +58,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> get(Long id) {
-        try (Connection con = ConnectionUtil.getConnection();) {
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE user_id = ?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
@@ -75,7 +75,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User update(User element) {
-        try (Connection con = ConnectionUtil.getConnection();) {
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "UPDATE users SET login = ?, password = ?, name = ? WHERE user_id = ?;");
             ps.setString(1, element.getLogin());
@@ -92,7 +92,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public boolean delete(Long id) {
-        try (Connection con = ConnectionUtil.getConnection();) {
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "SELECT order_id FROM orders WHERE user_id = ?;");
             ps.setLong(1, id);
@@ -131,7 +131,7 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public List<User> getAll() {
         ArrayList<User> users = new ArrayList<>();
-        try (Connection con = ConnectionUtil.getConnection();) {
+        try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM users;");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -180,7 +180,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 pr.setString(1, roles.getRoleName().toString());
                 ResultSet rs = pr.executeQuery();
                 rs.next();
-                Long roleId = rs.getLong("role_id");
+                long roleId = rs.getLong("role_id");
                 pr = con.prepareStatement("INSERT INTO user_roles\n"
                          + "VALUES(?, ?);");
                 pr.setLong(1, user.getId());

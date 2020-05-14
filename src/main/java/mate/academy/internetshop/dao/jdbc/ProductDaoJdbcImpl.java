@@ -38,7 +38,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Optional<Product> get(Long id) {
-        Product product;
         String sql = "SELECT * FROM products WHERE id = ?;";
         try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement statement = con.prepareStatement(sql);

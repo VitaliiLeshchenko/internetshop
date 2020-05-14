@@ -107,7 +107,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         return order;
     }
 
-    private boolean saveProducts(Order order, Connection con) throws SQLException {
+    private void saveProducts(Order order, Connection con) throws SQLException {
         String query = "INSERT INTO orders_products (order_id, product_id) VALUES (?, ?)";
         PreparedStatement statement = con.prepareStatement(query);
         for (Product product : order.getProducts()) {
@@ -115,6 +115,5 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(2, product.getId());
             statement.executeUpdate();
         }
-        return true;
     }
 }
