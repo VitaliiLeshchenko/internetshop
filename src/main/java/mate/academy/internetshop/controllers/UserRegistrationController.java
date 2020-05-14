@@ -32,8 +32,9 @@ public class UserRegistrationController extends HttpServlet {
         String password = req.getParameter("pwd");
         String passwordRepeat = req.getParameter("pwd-repeat");
         if (password.equals(passwordRepeat)) {
-            User user = userService.create(new User(name, login, password));
+            User user = new User(name, login, password);
             user.addRole(new Role(1L, Role.RoleName.USER));
+            userService.create(user);
             req.setAttribute("message", "Registration complete, now you can Login.");
             req.getRequestDispatcher("/WEB-INF/jsp/startPage.jsp").forward(req,resp);
         } else {

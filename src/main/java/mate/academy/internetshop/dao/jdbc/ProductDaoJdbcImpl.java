@@ -32,7 +32,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             element.setId(resultSet.getLong(1));
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -49,7 +49,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -68,19 +68,20 @@ public class ProductDaoJdbcImpl implements ProductDao {
             String msg = "Can't find product with id :" + element.getId();
             throw new DataProcessingException(msg);
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public boolean delete(Long id) {
+        //todo delete also in shopping_cart_products and orders_products
         String sql = "DELETE FROM products WHERE id = ?;";
         try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, id + "");
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -95,7 +96,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 productList.add(getProduct(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
         return productList;
     }
@@ -105,5 +106,34 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 resultSet.getDouble("price"));
         product.setId(resultSet.getLong("id"));
         return product;
+    }
+
+    @Override
+    public List<Product> getByOrder(Long orderId) {
+        return getProductsBySomeId("SELECT id, name, price FROM products "
+                        + "JOIN orders_products ON id = product_id WHERE order_id = ?",
+                orderId);
+    }
+
+    @Override
+    public List<Product> getByShoppingCart(Long shoppingCartId) {
+        return getProductsBySomeId("SELECT id, name, price "
+                + "FROM products JOIN shopping_carts_products ON id = product_id "
+                + "WHERE cart_id = ?", shoppingCartId);
+    }
+
+    private List<Product> getProductsBySomeId(String query, Long id) {
+        try (Connection con = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            List<Product> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(getProduct(resultSet));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

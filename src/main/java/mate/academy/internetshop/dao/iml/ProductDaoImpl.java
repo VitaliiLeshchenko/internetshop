@@ -39,4 +39,16 @@ public class ProductDaoImpl implements ProductDao {
     public List<Product> getAll() {
         return Storage.getProducts();
     }
+
+    @Override
+    public List<Product> getByOrder(Long id) {
+        //todo
+        return null;
+    }
+
+    @Override
+    public List<Product> getByShoppingCart(Long shoppingCartId) {
+        //todo
+        return null;
+    }
 }
