@@ -10,16 +10,12 @@ import java.util.List;
 import java.util.Optional;
 import mate.academy.internetshop.dao.Dao;
 import mate.academy.internetshop.dao.OrderDao;
-import mate.academy.internetshop.dao.ProductDao;
-import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.model.Order;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.util.ConnectionUtil;
 
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
-    @Inject
-    private ProductDao productDao;
 
     @Override
     public Order create(Order order) {
@@ -73,10 +69,14 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public boolean delete(Long id) {
         try (Connection con = ConnectionUtil.getConnection()) {
-            String query = "DELETE FROM orders WHERE order_id = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setLong(1, id);
-            return statement.executeUpdate() > 0;
+            String query = "DELETE FROM orders_products WHERE order_id = ?";
+            PreparedStatement st = con.prepareStatement(query);
+            st.setLong(1, id);
+            st.executeUpdate();
+            st = con.prepareStatement(
+                    "DELETE FROM orders WHERE order_id = ?");
+            st.setLong(1, id);
+            return st.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -102,7 +102,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private Order getOrder(Long id, Long userId) {
-        Order order = new Order(productDao.getByOrder(id), userId);
+        Order order = new Order(getByOrder(id), userId);
         order.setId(id);
         return order;
     }
@@ -115,5 +115,29 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(2, product.getId());
             statement.executeUpdate();
         }
+    }
+
+    public List<Product> getByOrder(Long orderId) {
+        try (Connection con = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = con.prepareStatement(
+                    "SELECT id, name, price FROM products "
+                    + "JOIN orders_products ON id = product_id WHERE order_id = ?");
+            statement.setLong(1, orderId);
+            ResultSet resultSet = statement.executeQuery();
+            List<Product> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(getProduct(resultSet));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Product getProduct(ResultSet resultSet) throws SQLException {
+        Product product = new Product(resultSet.getString("name"),
+                resultSet.getDouble("price"));
+        product.setId(resultSet.getLong("id"));
+        return product;
     }
 }

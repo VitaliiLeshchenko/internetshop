@@ -9,17 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import mate.academy.internetshop.dao.Dao;
-import mate.academy.internetshop.dao.ProductDao;
 import mate.academy.internetshop.dao.ShoppingCartDao;
-import mate.academy.internetshop.lib.Inject;
 import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.ShoppingCart;
 import mate.academy.internetshop.util.ConnectionUtil;
 
 @Dao
 public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
-    @Inject
-    private ProductDao productDao;
 
     @Override
     public ShoppingCart create(ShoppingCart element) {
@@ -41,7 +37,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     @Override
     public Optional<ShoppingCart> get(Long id) {
         try (Connection con = ConnectionUtil.getConnection()) {
-            String sql = "SELECT * FROM internet_shop.shopping_carts\n"
+            String sql = "SELECT * FROM shopping_carts\n"
                     + "WHERE cart_id = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setLong(1, id);
@@ -77,7 +73,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     public List<ShoppingCart> getAll() {
         ArrayList<ShoppingCart> list = new ArrayList<>();
         try (Connection con = ConnectionUtil.getConnection()) {
-            String sql = "SELECT * FROM internet_shop.shopping_carts\n;";
+            String sql = "SELECT * FROM shopping_carts\n;";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -92,7 +88,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     private ShoppingCart getShoppingCart(ResultSet rs) throws SQLException {
         ShoppingCart shoppingCart = new ShoppingCart(rs.getLong("user_id"));
         shoppingCart.setId(rs.getLong("cart_id"));
-        shoppingCart.setProducts(productDao.getByShoppingCart(shoppingCart.getId()));
+        shoppingCart.setProducts(getByShoppingCart(shoppingCart.getId()));
         return shoppingCart;
     }
 
@@ -112,5 +108,29 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private List<Product> getByShoppingCart(Long shoppingCartId) {
+        try (Connection con = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = con.prepareStatement("SELECT id, name, price "
+                    + "FROM products JOIN shopping_carts_products ON id = product_id "
+                    + "WHERE cart_id = ?");
+            statement.setLong(1, shoppingCartId);
+            ResultSet resultSet = statement.executeQuery();
+            List<Product> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(getProduct(resultSet));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Product getProduct(ResultSet resultSet) throws SQLException {
+        Product product = new Product(resultSet.getString("name"),
+                resultSet.getDouble("price"));
+        product.setId(resultSet.getLong("id"));
+        return product;
     }
 }

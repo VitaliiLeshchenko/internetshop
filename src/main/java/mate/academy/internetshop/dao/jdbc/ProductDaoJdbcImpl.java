@@ -113,33 +113,4 @@ public class ProductDaoJdbcImpl implements ProductDao {
         product.setId(resultSet.getLong("id"));
         return product;
     }
-
-    @Override
-    public List<Product> getByOrder(Long orderId) {
-        return getProductsBySomeId("SELECT id, name, price FROM products "
-                        + "JOIN orders_products ON id = product_id WHERE order_id = ?",
-                orderId);
-    }
-
-    @Override
-    public List<Product> getByShoppingCart(Long shoppingCartId) {
-        return getProductsBySomeId("SELECT id, name, price "
-                + "FROM products JOIN shopping_carts_products ON id = product_id "
-                + "WHERE cart_id = ?", shoppingCartId);
-    }
-
-    private List<Product> getProductsBySomeId(String query, Long id) {
-        try (Connection con = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setLong(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            List<Product> list = new ArrayList<>();
-            while (resultSet.next()) {
-                list.add(getProduct(resultSet));
-            }
-            return list;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
