@@ -16,7 +16,7 @@
     <form method="post" action="${pageContext.request.contextPath}/product/create">
     <br>please write name  :<input type="text" name="name">
     <br>
-    <br>please write price :<input type="password" name="price">
+    <br>please write price :<input type="text" name="price">
     <br>
     <button type="submit">Add</button>
     </form>

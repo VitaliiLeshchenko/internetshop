@@ -1,4 +1,4 @@
-package mate.academy.internetshop.dao.iml;
+package mate.academy.internetshop.dao.jdbc;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -32,13 +32,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
             element.setId(resultSet.getLong(1));
             return element;
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public Optional<Product> get(Long id) {
-        Product product;
         String sql = "SELECT * FROM products WHERE id = ?;";
         try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement statement = con.prepareStatement(sql);
@@ -49,7 +48,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -68,19 +67,27 @@ public class ProductDaoJdbcImpl implements ProductDao {
             String msg = "Can't find product with id :" + element.getId();
             throw new DataProcessingException(msg);
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public boolean delete(Long id) {
-        String sql = "DELETE FROM products WHERE id = ?;";
         try (Connection con = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setString(1, id + "");
-            return statement.executeUpdate() > 0;
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM shopping_carts_products WHERE product_id = ?");
+            ps.setString(1, id + "");
+            ps.executeUpdate();
+            ps = con.prepareStatement(
+                    "DELETE FROM orders_products WHERE product_id = ?;");
+            ps.setString(1, id + "");
+            ps.executeUpdate();
+            ps = con.prepareStatement(
+                    "DELETE FROM products WHERE id = ?;");
+            ps.setString(1, id + "");
+            return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -95,7 +102,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 productList.add(getProduct(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException(e.getMessage());
+            throw new RuntimeException(e);
         }
         return productList;
     }
