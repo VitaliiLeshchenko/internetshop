@@ -3,6 +3,7 @@ CREATE TABLE `users` (
   `login` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
   `name` varchar(256) DEFAULT NULL,
+  `salt` varbinary(400) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `idUsers_UNIQUE` (`user_id`),
   UNIQUE KEY `login_UNIQUE` (`login`)

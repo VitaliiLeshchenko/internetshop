@@ -3,7 +3,6 @@ package mate.academy.internetshop.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Random;
 import org.apache.log4j.Logger;
 
 public class HashUtil {
@@ -30,7 +29,6 @@ public class HashUtil {
         }
         return hashedPassword.toString();
     }
-
 
     public static void main(String[] args) {
         System.out.println(hashPassword("hello world", new byte[]{}));
