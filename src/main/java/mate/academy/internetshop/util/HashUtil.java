@@ -29,8 +29,4 @@ public class HashUtil {
         }
         return hashedPassword.toString();
     }
-
-    public static void main(String[] args) {
-        System.out.println(hashPassword("hello world", new byte[]{}));
-    }
 }
