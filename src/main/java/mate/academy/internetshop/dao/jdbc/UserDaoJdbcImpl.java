@@ -40,11 +40,12 @@ public class UserDaoJdbcImpl implements UserDao {
     public User create(User element) {
         try (Connection con = ConnectionUtil.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO users (login, password, name) VALUES(?, ?, ?);",
+                    "INSERT INTO users (login, password, name, salt) VALUES(?, ?, ?, ?);",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, element.getLogin());
             ps.setString(2, element.getPassword());
             ps.setString(3, element.getName());
+            ps.setBytes(4, element.getSalt());
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
@@ -148,6 +149,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 rs.getString("login"),
                 rs.getString("password"));
         user.setId(rs.getLong("user_id"));
+        user.setSalt(rs.getBytes("salt"));
         return user;
     }
 
