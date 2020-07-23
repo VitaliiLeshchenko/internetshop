@@ -1,1 +1,1 @@
-This is a training project - Cinema - which simulate simple online cinema box office.
+This is a training project - internetshop - which simulate simple online internet shop.
