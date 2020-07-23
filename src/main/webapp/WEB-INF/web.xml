@@ -5,7 +5,7 @@
          version="4.0">
     <filter>
         <filter-name>AuthorizationFilter</filter-name>
-        <filter-class>mate.academy.internetshop.web.filter.AuthorizationFilter</filter-class>
+        <filter-class>mate.academy.internet.shop.web.filter.AuthorizationFilter</filter-class>
     </filter>
 
     <filter-mapping>
